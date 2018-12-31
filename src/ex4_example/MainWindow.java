@@ -23,11 +23,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Coords.GeoBox;
 import Coords.LatLonAlt;
-import Coords.Map;
+import Coords.MyCoords;
 import Geom.Point3D;
+import Gis.Map;
+import Gis.Packman;
 import Robot.Fruit;
 import Robot.Game;
-import Robot.Packman;
+
 import Robot.Play;
 
 
@@ -51,6 +53,9 @@ public class MainWindow extends JFrame implements MouseListener, Runnable {
 	LatLonAlt cen = new LatLonAlt(lat, lon, alt);
 	boolean b= false;
 	ArrayList<String> board_data;
+	boolean bb = true;
+	Packman myPac = null;
+	double [] arr = {0,0,0};
 
 
 
@@ -111,7 +116,19 @@ public class MainWindow extends JFrame implements MouseListener, Runnable {
 	public void paint(Graphics g)
 	{
 		g.drawImage(myImage, 0, 0,this.getWidth(), this.getHeight(), this);
-		Map map = new Map(cen, dx, dy, map_name);
+	//	Map map = new Map(cen, dx, dy, map_name);
+		Map map = new Map();
+		if(x != -1 && y != -1) {
+			if(button==1) {
+				bb = false;
+				g.drawImage(ImageMy, x, y,30,30, this);
+				Point3D pix = new Point3D(x,y); 
+				Point3D PixToPoint = map.pixelsToPoint(pix);
+				myPac = new Packman(PixToPoint);
+				button = -1;
+				play1.setInitLocation(myPac.getGps().x(),myPac.getGps().y());
+			}
+		}
 		if (b) {
 			//			for (int i=0; i<game.sizeT(); i++) {
 			//				Fruit target = game.getTarget(i);
@@ -130,41 +147,61 @@ public class MainWindow extends JFrame implements MouseListener, Runnable {
 			//			}
 			board_data = play1.getBoard();
 			Iterator<String> it = board_data.iterator();
+			
 //			for (int i=0; i<board_data.size(); i++) {
 			while (it.hasNext()) {
 //				String line = board_data.get(i);
 				String line = it.next();
 				if (line.startsWith("P")) {
 					Packman p = new Packman(line);
-					Point3D ans = map.world2frame((LatLonAlt) p.getGeom());
+					Point3D ans = map.pointToPixels(p.getGps());
 					g.drawImage(ImagePackman, ans.ix(), ans.iy(),30,30, this);
 				}
 				else if (line.startsWith("F")) {
 					Fruit f = new Fruit(line);
-					Point3D ans = map.world2frame((LatLonAlt) f.getGeom());
+					Point3D ans = map.pointToPixels( f.getLocation());
 					g.drawImage(ImageFruit, ans.ix(), ans.iy(),30,30, this);	
 				}
 				else if (line.startsWith("G")) {
 					Packman p = new Packman(line);
-					Point3D ans = map.world2frame((LatLonAlt) p.getGeom());
+					Point3D ans = map.pointToPixels(p.getGps());
 					g.drawImage(ImageGhosts, ans.ix(), ans.iy(),30,30, this);
 				}
 				else if (line.startsWith("B")) {
 					GeoBox b = new GeoBox(line);
-					Point3D min = map.world2frame(b.getMin());
-					Point3D max = map.world2frame(b.getMax());
+					Point3D min = map.pointToPixels(b.getMin());
+					Point3D max = map.pointToPixels(b.getMax());
 					int wight = max.ix() - min.ix();
 					int hight = min.iy() -max.iy();
 					g.fillRect(min.ix(), max.iy(),wight, hight);
 				}
+				else if (line.startsWith("M")&& ! bb) {
+					myPac = new Packman(line);
+					Point3D ans = map.pointToPixels(myPac.getGps());
+					g.drawImage(ImageMy, ans.ix(), ans.iy(),30,30, this);
+				}
 			}
 		}
+	
 	}
-
+    int x = -1, y= -1 , button = 0;
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+	public void mouseClicked(MouseEvent arg) {
+		Map map = new Map();
+		MyCoords my = new MyCoords();
+		if(bb) {
+		button = arg.getButton();
+		x = arg.getX();
+		y = arg.getY();
+		repaint(x,y,30,30);
+		}
+		else {
+			x = arg.getX();
+			y = arg.getY();
+			Point3D pix = new Point3D(x,y); 
+			Point3D PointToPix = map.pixelsToPoint(pix);
+			arr = my.azimuth_elevation_dist(PointToPix, myPac.getGps());
+		}
 	}
 
 	@Override
@@ -192,17 +229,14 @@ public class MainWindow extends JFrame implements MouseListener, Runnable {
 	@Override
 	public void run() {
 		play1.setIDs(1111,2222,3333);
-		play1.setInitLocation(32.1040,35.2061);
 		play1.start();
-		int i=0;
 		while (play1.isRuning()) {
-			i++;
-			play1.rotate(36*i); 
+			play1.rotate(arr[0]); 
 //			System.out.println("***** "+i+"******");
 //			String info = play1.getStatistics();
 //			System.out.println(info);
 			try {
-				Thread.sleep(350);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
