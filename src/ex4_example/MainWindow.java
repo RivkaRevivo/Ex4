@@ -21,13 +21,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import Coords.GeoBox;
-import Coords.LatLonAlt;
+import Coords.Box;
 import Coords.MyCoords;
 import Geom.Point3D;
+import Gis.Fruit;
 import Gis.Map;
 import Gis.Packman;
-import Robot.Fruit;
+
 import Robot.Game;
 
 import Robot.Play;
@@ -50,7 +50,7 @@ public class MainWindow extends JFrame implements MouseListener, Runnable {
 	double alt = 0.0D;
 	double dx = 955.5D;
 	double dy = 421.0D;
-	LatLonAlt cen = new LatLonAlt(lat, lon, alt);
+	Point3D cen = new Point3D(lat, lon, alt);
 	boolean b= false;
 	ArrayList<String> board_data;
 	boolean bb = true;
@@ -159,7 +159,7 @@ public class MainWindow extends JFrame implements MouseListener, Runnable {
 				}
 				else if (line.startsWith("F")) {
 					Fruit f = new Fruit(line);
-					Point3D ans = map.pointToPixels( f.getLocation());
+					Point3D ans = map.pointToPixels( f.getGps());
 					g.drawImage(ImageFruit, ans.ix(), ans.iy(),30,30, this);	
 				}
 				else if (line.startsWith("G")) {
@@ -168,7 +168,7 @@ public class MainWindow extends JFrame implements MouseListener, Runnable {
 					g.drawImage(ImageGhosts, ans.ix(), ans.iy(),30,30, this);
 				}
 				else if (line.startsWith("B")) {
-					GeoBox b = new GeoBox(line);
+					Box b = new Box(line);
 					Point3D min = map.pointToPixels(b.getMin());
 					Point3D max = map.pointToPixels(b.getMax());
 					int wight = max.ix() - min.ix();
