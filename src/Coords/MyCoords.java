@@ -1,7 +1,11 @@
 package Coords;
 
 import Geom.Point3D;
-
+/**
+ * this class calculate distance azimuth ,elevation ,between 2 Point3D coordinates and Point3D coordinate and Point3D meters 
+ * @author User
+ *
+ */
 public class MyCoords implements coords_converter {
 	int radius = 6371000;
 	
