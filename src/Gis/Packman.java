@@ -9,14 +9,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import Geom.Point3D;
-
+/**
+ * this class represent "Packmant" , with Geom in real world
+ *
+ */
 public class Packman {
-    private int id;
-	private BufferedImage myPackman ;
-	private BufferedImage Ghost;
 	private Point3D gps ;
 	
-	
+//constructors	
 	public Packman(Point3D gps) {
 		this.gps = gps;
 	}
@@ -25,7 +25,6 @@ public class Packman {
 	}
 	  public Packman(String line) { 
 		String[] arr = line.split(",");
-	    id = Integer.parseInt(arr[1]);
 	    String p = arr[2] + "," + arr[3] + "," + arr[4];
 	    gps = new Point3D(p);
 	  }

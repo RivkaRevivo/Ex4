@@ -22,7 +22,7 @@ public class Graph_Example {
 			pp[i] = new Point3D(xx[i], yy[i]);
 		}
 		
-		Graph G = new Graph(); 
+		Graph G = new Graph();
 		String source = "a";
 		String target = "b";
 		G.add(new Node(source)); // Node "a" (0)
@@ -77,4 +77,5 @@ public class Graph_Example {
 			System.out.print(","+shortestPath.get(i));
 		}
 	}
+	
 }
