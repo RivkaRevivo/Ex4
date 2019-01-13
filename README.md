@@ -54,10 +54,18 @@ Don't let any ghost touch you , because it kiils you and will cost you 20 points
 
 Game can Played by 2 different ways:
 From the class Main at the ex4_gui package:
+
+
 mannualy:
+
+
 just load one of the nine examples attached to repository ,locate your player's requested position and than choose "Run By Mouse" option.
 where ever your mouse in pressed on map , is where your personal player will be headed to.
+
+
 automaticly:
+
+
 if you want to play automaticly , first locate your player's requested position.
 Then choose the "Run automatic" option.
 The game will be played as long as there are fruits that havent been eaten yet , or until time limitation (100 seconds).
