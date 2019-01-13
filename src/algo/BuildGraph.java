@@ -11,7 +11,7 @@ import graph.Graph;
 import graph.Node;
 /**
  * this class build a Graph containing all the vertexes (fruits , edges of the boxes and the player)
- * @author Yuval Cohen and Amit Znaft
+ * @author Yuval Cohen and Amit Znaft and Rivka Revivo
  *
  */
 public class BuildGraph {
