@@ -38,3 +38,16 @@ A Game can be built By several ways, including from a proper csv file, and manua
 
 Also , view game's rewind on google earth , with "Game2Kml". 
 
+for Ex2 and Ex3 visit our reposetory --> https://github.com/amitznaft/GIS-project
+
+# Ex4 
+for this version of exricise we have added new features to answer the following challanges:
+
+(1) from now , there is only one special personal player.
+for this player , new algorithms and classes was added to plan a path , just like ex3.
+(2) games have been modilfied to include ghosts( the same ghosts that you are familliar with , just like the clasic packman)
+(3) In addition , game features black boxes , which are forrbidened to step on\in.
+
+Games motivation is to keep it simple:
+Don't touch any black boxes (costs one point)
+Don't let any ghost touch you , because it kiils you and will cost you 20 points! (not really)..
