@@ -241,7 +241,7 @@ public class MainWindow extends JFrame implements MouseListener, Runnable {
 			Sql.getsql();
 		}
 		else {
-			play1.setIDs(205478431,311483432);
+			play1.setIDs(205478431,311483432,208736827);
 			play1.start();
 			boolean ismorefruits = true;
 			while (play1.isRuning() && ismorefruits) {
