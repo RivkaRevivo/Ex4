@@ -51,3 +51,19 @@ for this player , new algorithms and classes was added to plan a path , just lik
 Games motivation is to keep it simple:
 Don't touch any black boxes (costs one point)
 Don't let any ghost touch you , because it kiils you and will cost you 20 points! (not really)..
+
+Game can Played by 2 different ways:
+From the class Main at the ex4_gui package:
+mannualy:
+just load one of the nine examples attached to repository ,locate your player's requested position and than choose "Run By Mouse" option.
+where ever your mouse in pressed on map , is where your personal player will be headed to.
+automaticly:
+if you want to play automaticly , first locate your player's requested position.
+Then choose the "Run automatic" option.
+The game will be played as long as there are fruits that havent been eaten yet , or until time limitation (100 seconds).
+
+In addition , through the Play object API , all results of score , are updated live thourgh 
+server , which we can play against class mates.
+When the game is finished , you can view a full time-lined statistics of game
+and personal results history , which is nice to improve.
+Also you can view your rank compared to other class mates to the specific game choosen by user.
