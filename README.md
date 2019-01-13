@@ -75,3 +75,7 @@ server , which we can play against class mates.
 When the game is finished , you can view a full time-lined statistics of game
 and personal results history , which is nice to improve.
 Also you can view your rank compared to other class mates to the specific game choosen by user.
+
+In this project you will need to use the J'ars:
+- Jdk 11
+- download the folder "Ex4_OOP" and add the 3 J'ars files to the project.
