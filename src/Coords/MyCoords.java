@@ -3,7 +3,6 @@ package Coords;
 import Geom.Point3D;
 /**
  * this class calculate distance azimuth ,elevation ,between 2 Point3D coordinates and Point3D coordinate and Point3D meters 
- * @author User
  *
  */
 public class MyCoords implements coords_converter {
@@ -85,7 +84,7 @@ public class MyCoords implements coords_converter {
 		double b = Math.cos(Math.toRadians(gps0.x())) * Math.sin(Math.toRadians(gps1.x())) - 
 				(Math.sin(Math.toRadians(gps0.x())) * Math.cos(Math.toRadians(gps1.x())) * Math.cos(Math.toRadians(diffLon)));
 		
-		double c =  Math.toDegrees(Math.atan2(a, b))+180;
+		double c =  Math.toDegrees(Math.atan2(a, b)) +180;
 		if (c<0) {
 			return c +360;
 		}

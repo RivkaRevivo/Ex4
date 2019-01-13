@@ -1,14 +1,22 @@
 package Coords;
 
-import java.util.ArrayList;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import Geom.Point3D;
-
+/**
+ * this class represents a "Box" , with min and max geom in the real world
+ *
+ */
 public class Box {
 
 	  private Point3D min;
 	  private Point3D max;
-	  
+	//constructors  
 	  public Box(Point3D max, Point3D min) { 
 		 this.min = min;
 		 this.max = max;
@@ -19,35 +27,12 @@ public class Box {
 		    min = new Point3D(p);
 		    p = arr[5] + "," + arr[6] + "," + arr[7];
 		    max = new Point3D(p);
-		    Box box = new Box(max,min); 
 		  }
-
-	public boolean isIn2D(Point3D q) { boolean ans = false;
-	    if ((q.x() > min.x()) && (q.y() > min.y()) && (q.x() < max.x()) && (q.y() < max.y())) {
-	      ans = true;
-	    }
-	    return ans;
-	  }
 
 	public Point3D getMin() {
 		return min;
 	}
-
-
-
-	public void setMin(Point3D min) {
-		this.min = min;
-	}
-
-
-
 	public Point3D getMax() {
 		return max;
-	}
-
-
-
-	public void setMax(Point3D max) {
-		this.max = max;
 	}
 }
